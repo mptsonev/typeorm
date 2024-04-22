@@ -246,6 +246,8 @@ export class DataSource {
      * but it also can setup a connection pool with database to use.
      */
     async initialize(): Promise<this> {
+        console.log("Test fork repo")
+        throw new Error("EMI DA")
         if (this.isInitialized)
             throw new CannotConnectAlreadyConnectedError(this.name)
 
