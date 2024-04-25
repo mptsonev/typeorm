@@ -4242,7 +4242,11 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
         } else {
             let andConditions: string[] = []
             for (let key in where) {
-                if (where[key] === undefined || where[key] === null) continue
+                if (where[key] === undefined || where[key] === null) {
+                    throw new TypeORMError(
+                        `Null or undefined conditional found in where clause for key=${key} value=${where[key]}`,
+                    )
+                }
 
                 const propertyPath = embedPrefix ? embedPrefix + "." + key : key
                 const column =
